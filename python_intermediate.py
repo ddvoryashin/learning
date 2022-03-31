@@ -141,3 +141,77 @@ d.removeleft() # [1, 2]
 
 d.extendleft([4, 5, 6]) # [6, 5, 4, 1, 2]
 d.rotate(-2) # [4, 1, 2, 6, 5]
+
+#################
+# Itertools
+#################
+# always print(list(itertool))
+from itertools import product
+a = [1, 2]
+b = [3]
+prod = product(a, b)
+print(list(prod)) # [(1, 3), (2, 3)]
+prod = product(a, b, repeat=2)
+print(list(prod)) # [(1, 3, 1, 3), (1, 3, 2, 3), (2, 3, 1, 3), (2, 3, 2, 3)]
+
+from itertools import permutations
+a = [1, 2, 3]
+perm = permutations(a, 2) # [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+
+from itertools import combination, combination_with_replacement
+a = [1, 2, 3, 4]
+comb = combination(a, 2) # [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+comb = combination_with_replacement(a, 2) # [(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (4, 4)]
+
+from itertools import accumulate
+import operator
+a = [1, 2, 3]
+acc = accumulate(a) # [1, 3, 6]
+acc = accumulate(a, func=operator.mul) # [1, 2, 6]
+acc = accumulate(a, func=max) # [1, 2, 3]
+
+from itertools import groupby
+
+a = [1, 2, 3, 4]
+groupby_obj = groupby(a, key=lambda x: x<3)
+for key, value in groupby_obj:
+    print(key, list(value)) # True [1, 2]
+                            # False [3, 4]
+
+from itertools import count, cycle, repeat
+# count from 10 to 15
+for i in count(10):
+    print i
+    if i == 15: break
+
+# cycle through a 3 times
+a = [1, 2, 3]
+k = 0
+for i in cycle(a):
+    print(i)
+    k+=1
+    if k == 3: break
+
+# repeat 1 5 times
+for i in repeat(1, 5):
+    print(i)
+
+#################
+# Lambdas
+#################
+
+points2D = [(1, 2), (-1, 15), (4, 3), (7, 4)]
+points2D_sorted = sorted(points2D) # sort by keys
+points2D_sorted = sorted(points2D, key=lambda x: x[1]) # sort by values
+
+
+a = [1, 2, 3, 4]
+# map
+b = map(lambda x: x*2, a)
+b = [x*2 for x in a] # same
+# filter
+b = filter(lambda x: x%2==0, a)
+b = [x for x in a if x%2==0] # same
+# reduce
+from functools import reduce
+product_a = reduce(lambda x,y: x*y, a) # 720 - multiplies all elements
