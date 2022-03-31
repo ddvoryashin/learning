@@ -36,3 +36,108 @@ print(timeit.timeit(stmt='(0, 1, 2, 3, 4)', number=1000000))
 #################
 # Dictionaries
 #################
+
+# ways to create
+my_dict = {'name': 'Max', 'age': 28, 'city': 'New York'}
+my_dict2 = dict(name='Max', age=28, city='Boston')
+
+my_dict2['email'] = 'xyz@gmail.com'
+
+# deletion
+del my_dict2['email']
+my_dict2.pop('name')
+my_dict2.popitem() # last one
+
+for key, value in my_dict:
+    print(key + ' = ' + value)
+
+# how to copy
+my_dict_copy = my_dict.copy()
+my_dict_copy = dict(my_dict)
+
+my_dict.update(my_dict_2) # adds non-existent keys and their values from my_dict_2
+
+#################
+# Sets
+#################
+
+my_set = {1, 2, 3, 2, 1} # 1, 2, 3
+my_set = set([1, 2, 3])
+my_set = set('Hello') # good for countig unique characters
+
+my_set.add(4)
+my_set.remove(4)
+my_set.discard(4) # no error when there is no 4
+my_set.clear()
+
+odds = {1, 3, 5, 7, 9}
+evens = {0, 2, 4, 6, 8}
+u = odds.union(evens) # {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+i = odds.intersection(evens) # set()
+
+setA = {0, 1, 2, 3, 4, 5}
+setB = {0, 1, 2, 10, 11, 12}
+diff = setA.difference(setB) # {3, 4, 5}
+symm_diff = setA.symmetric_difference(setB) # {3, 4, 5, 10, 11, 12}
+
+setA = {0, 1, 2, 3, 4}
+setB = {0, 1, 2}
+setC = {5, 6, 7}
+print(setA.issuperset(setB)) # True
+print(setB.issubset(setA)) # True
+print(setA.isdisjoint(setC)) # True
+
+setA = frozenset([1, 2, 3, 4])
+setA.add(5) # Error
+setA.remove(1) # Error
+
+#################
+# Strings
+#################
+
+var = 3.12345
+var2 = 6
+my_string = "var is %.2f" % var # var is 3.12
+my_string = "var is {:.2f} and {}".format(var, var2) # var is 3.12 and 6
+my_string = f"var is {var} and {var2}"
+
+#################
+# Collections
+#################
+
+from collections import Counter
+a = 'aaaaabbbbccc'
+my_counter = Counter(a) # {'a': 5, 'b': 4, 'c': 3}
+print(my_counter.most_common(2)) # [('a', 5), ('b', 4)]
+print(my_counter.most_common(2)[0][0]) # a
+print(list(my_counter.elements()))
+
+from collections import namedtuple
+Point = namedtuple('Point', 'x,y')
+pt = Point(1, -4)
+print(pt) # Point(x=1, y=-4)
+
+from collections import OrderedDict
+ordered_dict = OrderedDict()
+ordered_dict['b'] = 2
+ordered_dict['c'] = 3
+ordered_dict['d'] = 4
+ordered_dict['a'] = 1
+print(ordered_dict) # OrderedDict([('b', 2), ('c', 3), ('d', 4), ('a', 1)])
+
+from collections import defaultdict
+default_dict = defaultdict('int')
+default_dict['a'] = 1
+default_dict['b'] = 2
+print(default_dict['c']) # 0
+
+from collections import deque
+d = deque()
+d.append(1)
+d.append(2) # [1, 2]
+
+d.appendleft(3) # [3, 1, 2]
+d.removeleft() # [1, 2]
+
+d.extendleft([4, 5, 6]) # [6, 5, 4, 1, 2]
+d.rotate(-2) # [4, 1, 2, 6, 5]
