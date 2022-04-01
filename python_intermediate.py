@@ -215,3 +215,11 @@ b = [x for x in a if x%2==0] # same
 # reduce
 from functools import reduce
 product_a = reduce(lambda x,y: x*y, a) # 720 - multiplies all elements
+
+#################
+# Enumerate
+#################
+names = ['John', "Jack", 'Will']
+# prints all names
+for i, name in enumerate(names):
+    print(name)
