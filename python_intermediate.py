@@ -223,3 +223,54 @@ names = ['John', "Jack", 'Will']
 # prints all names
 for i, name in enumerate(names):
     print(name)
+
+#################
+# Errors and Exceptions
+#################
+
+x = -5
+if x < 0:
+    raise Exception('x must be positive')
+
+assert (x>=5), 'x is not positive'
+
+try:
+    a = 5 / 0
+except Exception as e:
+    print(e)
+
+try:
+    a = 5 / 0
+except ZeroDivisionError as e:
+    print(e)
+except TypeError as e:
+    print(e)
+else:
+    print('fine')
+finally:
+    print('cleaning up...')
+
+class ValueTooHighError(Exception):
+    pass
+
+def test_value(x):
+    if x > 100:
+        raise ValueTooHighError('value is too high')
+
+try:
+    test_value(200)
+except ValueTooHighError as e:
+    print(e)
+
+#################
+# Logging
+#################
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+
+logging.debug('some message')
+logging.info('some message')
+logging.warning('some message')
+logging.error('some message')
+logging.critical('some message')
