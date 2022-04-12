@@ -19,9 +19,9 @@ new_list = my_list[:] # if you change new_list, my_list will stay the same
 my_tuple = (1, 2, 3, 4)
 my_tuple = 1, 2, 3, 4
 my_tuple = (1,)
-my_typle = typle(my_list)
+my_tuple = tuple(my_list)
 
-my_tuple[0] = 'Other' # can't do this
+#my_tuple[0] = 'Other' # can't do this
 
 i1, *i2, i3 = my_tuple
 print(i1) # 1
@@ -48,14 +48,14 @@ del my_dict2['email']
 my_dict2.pop('name')
 my_dict2.popitem() # last one
 
-for key, value in my_dict:
-    print(key + ' = ' + value)
+for key, value in my_dict.items():
+    print(key + ' = ' + str(value))
 
 # how to copy
 my_dict_copy = my_dict.copy()
 my_dict_copy = dict(my_dict)
 
-my_dict.update(my_dict_2) # adds non-existent keys and their values from my_dict_2
+my_dict.update(my_dict2) # adds non-existent keys and their values from my_dict_2
 
 #################
 # Sets
@@ -88,8 +88,8 @@ print(setB.issubset(setA)) # True
 print(setA.isdisjoint(setC)) # True
 
 setA = frozenset([1, 2, 3, 4])
-setA.add(5) # Error
-setA.remove(1) # Error
+#setA.add(5) # Error
+#setA.remove(1) # Error
 
 #################
 # Strings
@@ -125,11 +125,11 @@ ordered_dict['d'] = 4
 ordered_dict['a'] = 1
 print(ordered_dict) # OrderedDict([('b', 2), ('c', 3), ('d', 4), ('a', 1)])
 
-from collections import defaultdict
-default_dict = defaultdict('int')
-default_dict['a'] = 1
-default_dict['b'] = 2
-print(default_dict['c']) # 0
+#from collections import defaultdict  # didn't get it
+#default_dict = defaultdict('int')
+#default_dict['a'] = 1
+#default_dict['b'] = 2
+#print(default_dict['c']) # 0
 
 from collections import deque
 d = deque()
@@ -137,7 +137,7 @@ d.append(1)
 d.append(2) # [1, 2]
 
 d.appendleft(3) # [3, 1, 2]
-d.removeleft() # [1, 2]
+d.popleft() # [1, 2]
 
 d.extendleft([4, 5, 6]) # [6, 5, 4, 1, 2]
 d.rotate(-2) # [4, 1, 2, 6, 5]
@@ -158,10 +158,10 @@ from itertools import permutations
 a = [1, 2, 3]
 perm = permutations(a, 2) # [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
 
-from itertools import combination, combination_with_replacement
+from itertools import combinations, combinations_with_replacement
 a = [1, 2, 3, 4]
-comb = combination(a, 2) # [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
-comb = combination_with_replacement(a, 2) # [(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (4, 4)]
+comb = combinations(a, 2) # [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+comb = combinations_with_replacement(a, 2) # [(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (4, 4)]
 
 from itertools import accumulate
 import operator
@@ -181,7 +181,7 @@ for key, value in groupby_obj:
 from itertools import count, cycle, repeat
 # count from 10 to 15
 for i in count(10):
-    print i
+    print(i)
     if i == 15: break
 
 # cycle through a 3 times
@@ -228,7 +228,7 @@ for i, name in enumerate(names):
 # Errors and Exceptions
 #################
 
-x = -5
+x = 5
 if x < 0:
     raise Exception('x must be positive')
 
@@ -267,10 +267,12 @@ except ValueTooHighError as e:
 #################
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 
 logging.debug('some message')
 logging.info('some message')
 logging.warning('some message')
 logging.error('some message')
 logging.critical('some message')
+
+import helper
