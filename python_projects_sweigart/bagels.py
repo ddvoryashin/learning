@@ -25,21 +25,24 @@ def compare(hidden_, guess_):
     else:
         d = {}
         # Find all 'Fermi' and put theirs indeces to d
-        for g in guess_:
-            for h in hidden_:
-                if h == g and hidden_.index(h) == guess_.index(g):
-                    fermi_ix = guess_.index(h)
-                    d[fermi_ix] = 'Fermi'
+        for i in range(len(guess_)):
+            print(f'Fermi i: {i}')
+            for j in range(len(hidden_)):
+                print(f'Fermi j: {j}')
+                if hidden_[j] == guess_[i] and j == i:
+                    d[j] = 'Fermi'
+                    print(f'Fermi d: {d}')
         
         # Find all 'Pico', but don't check indeces of 'Fermi' in both hidden_ and guess_
-        # TODO: учесть, что .index() ищет первое совпадение в списке #
-        for g in guess_:
-            if d.get(guess_.index(g), 'Empty') == 'Empty': # find index of g in d
-                for h in hidden_:
-                    if d.get(hidden_.index(h), 'Empty') == 'Empty': # find index of h in d
-                        if h == g and hidden_.index(h) != guess_.index(g):
-                            pico_ix = guess_.index(h)
-                            d[pico_ix] = 'Pico'
+        for i in range(len(guess_)):
+            print(f'Pico i: {i}')
+            if d.get(i, 'Empty') == 'Empty': # find g in d
+                for j in range(len(hidden_)):
+                    print(f'Pico j: {j}')
+                    if d.get(j, 'Empty') == 'Empty': # find index of h in d
+                        if hidden_[j] == guess_[i] and j != i:
+                            d[i] = 'Pico'
+                            print(f'Pico d: {d}')
         
         # Combine dict into msg in ascending order by key
         list_values = dict(sorted(d.items())).values()
