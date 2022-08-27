@@ -4,8 +4,6 @@ MAX_ITER = 10
 NUM_DIGITS = 3
 DIGITS = '0123456789'
 
-# TODO: add bad input handling (less/more digits, alphabetical symbols)
-
 def main():
     
     # info
