@@ -32,7 +32,15 @@ This version of game supports repeating digits.''')
 
         # main cycle
         for i in range(MAX_ITER):
-            guess = str(input('Make a guess: '))
+            while True:
+                guess = str(input('Make a guess: '))
+                if len(guess) == NUM_DIGITS:
+                    break
+                elif len(guess) < NUM_DIGITS:
+                    print('Too short number. Try again')
+                elif len(guess) > NUM_DIGITS:
+                    print('Too long number. Try again')
+            
             print('guess type:', type(guess))
             
             msg, flag_win = compare(hidden, guess)
