@@ -1,10 +1,10 @@
-SSH is a cryptographic network protocol for operating network services securely over an unsecured network.[1] It is based on public-key (asymmetrical) cryptography for authentication.
+SSH is a cryptographic network protocol for operating network services securely over an unsecured network. It is based on public-key (asymmetrical) cryptography for authentication.
 
 Public-key (asymmetrical) encryption uses pairs of keys: public and private ones. Both of the keys are created by a user, then a public one can be shared with a server, private key must be always hidden from anyone and shouldn't be transferred to other devices.
 
 One of the key components of SSH is an encrypting algorithm. These algoritms are often used in SSH:
 1) RSA;
-2) Diffie Hellman.
+2) Diffie-Hellman.
 
 How RSA works on example of Bob wanting to send a message to Alice:
 1) Alice is generating public and private keys:
@@ -30,3 +30,9 @@ Example:
 5) Compute d = 413, because 1 = (17 * 413) mod 780;
 6) Public key is (3233, 17), and encrypting function is: _c(m) = m<sup>e</sup>_ mod _n_ = _m_<sup>17</sup> mod 3233. Private key is (3233, 413), ad decrypting function is: _m(c) = c<sup>d</sup>_ mod _n_ = _c_<sup>413</sup> mod 3233;
 7) For example, _m_ = 65, then c = 65<sup>17</sup> mod 3233 = 2790, and m = 2790<sup>413</sup> mod 3233 = 65.
+
+
+Resources:
+1) https://en.wikipedia.org/wiki/Secure_Shell
+2) https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+3) https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
